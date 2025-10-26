@@ -4,8 +4,8 @@ type UserResponse struct {
 	Id        uint    `json:"id"`
 	Name      string  `json:"name"`
 	Username  string  `json:"username"`
+	RoleId    uint    `json:"role_Id"`
 	NoReg     string  `json:"no_reg"`
-	UserRole  string  `json:"user_role"`
 	Email     string  `json:"email"`
 	CreatedAt string  `json:"created_at"`
 	UpdatedAt string  `json:"updated_at"`
@@ -16,7 +16,7 @@ type UserCreateRequest struct {
 	Name     string `json:"name" binding:"required"`
 	Username string `json:"username" binding:"required" gorm:"unique;not null"`
 	NoReg    string `json:"no_reg" binding:"required" gorm:"unique;not null"`
-	UserRole string `json:"user_role" binding:"required" gorm:"unique;not null"`
+	RoleId   uint   `json:"role_id" binding:"required" gorm:"unique;not null"`
 	Email    string `json:"email" binding:"required" gorm:"unique;not null"`
 	Password string `json:"password" binding:"required"`
 }
@@ -25,7 +25,7 @@ type UserUpdateRequest struct {
 	Name     string `json:"name" binding:"required"`
 	Username string `json:"username" binding:"required" gorm:"unique;not null"`
 	NoReg    string `json:"no_reg" binding:"required" gorm:"unique;not null"`
-	UserRole string `json:"user_role" binding:"required" gorm:"unique;not null"`
+	RoleId   uint   `json:"role_id" binding:"required" gorm:"unique;not null"`
 	Email    string `json:"email" binding:"required" gorm:"unique;not null"`
 	Password string `json:"password,omitempty"`
 }

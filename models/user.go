@@ -7,7 +7,7 @@ type User struct {
 	Name      string    `json:"name"`
 	Username  string    `json:"username" gorm:"unique;not null"`
 	Email     string    `json:"email" gorm:"unique;not null"`
-	UserRole  string    `json:"user_role"`
+	RoleId    uint      `json:"role_id" gorm:"not null"`
 	NoReg     string    `json:"no_reg"`
 	Password  string    `json:"password"`
 	CreatedAt time.Time `json:"created_at"`

@@ -13,12 +13,14 @@ func AuthMiddleware() gin.HandlerFunc {
 	var jwtKey = []byte(config.GetEnv("JWT_SECRET_KEY", "secret"))
 
 	return func(c *gin.Context) {
-		tokenString := c.GetHeader("Auhtorization")
+		tokenString := c.GetHeader("Authorization")
 
 		if tokenString == "" {
 			c.JSON(http.StatusUnauthorized, gin.H{
 				"error": "token is required",
 			})
+			c.Abort()
+			return
 		}
 
 		tokenString = strings.TrimPrefix(tokenString, "Bearer ")

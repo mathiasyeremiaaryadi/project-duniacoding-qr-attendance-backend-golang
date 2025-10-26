@@ -27,7 +27,7 @@ func Register(c *gin.Context) {
 		Username: req.Username,
 		NoReg:    req.NoReg,
 		Email:    req.Email,
-		UserRole: req.UserRole,
+		RoleId:   req.RoleId,
 		Password: helpers.HashPassword(req.Password),
 	}
 
@@ -41,7 +41,7 @@ func Register(c *gin.Context) {
 		} else {
 			c.JSON(http.StatusInternalServerError, structs.ErrorsResponse{
 				Success: false,
-				Message: "failed to create data",
+				Message: "failed to register user",
 				Errors:  helpers.TranslateErrorMessage(err),
 			})
 		}
@@ -54,8 +54,8 @@ func Register(c *gin.Context) {
 			Id:        uint(user.ID),
 			Name:      user.Name,
 			Username:  user.Username,
+			RoleId:    user.RoleId,
 			NoReg:     user.NoReg,
-			UserRole:  user.UserRole,
 			Email:     user.Email,
 			CreatedAt: user.CreatedAt.Format("15:04:05 02-01-2006"),
 			UpdatedAt: user.UpdatedAt.Format("15:04:05 02-01-2006"),
